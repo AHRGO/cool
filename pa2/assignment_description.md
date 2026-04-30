@@ -90,10 +90,37 @@ Note that even though this is the first programming assignment, the directory na
 
     make -f /usr/class/cs143/assignments/PA2J/Makefile
 
+(notice the “J” in the path name). This command will copy a number of files to your directory. Some of the files will be copied read-only (using symbolic links). You should not edit these files. In fact, if you make and modify private copies of these files, you may find it impossible to complete the assignment. See the instructions in the README file. The files that you will need to modify are:
+
+- `cool.flex` (in the C++ version) / `cool.lex` (in the Java version)
+This file contains a skeleton for a lexical description for Cool. There are comments indicating where you need to fill in code, but this is not necessarily a complete guide. Part of the assignment is for you to make sure that you have a correct and working lexer. Except for the sections indicated, you are welcome to make modifications to our skeleton. You can actually build a scanner with the skeleton description, but it does not do much. You should read the flex/jlex manual to figure out what this description does do. Any auxiliary routines that you wish to write should be added directly to this file in the appropriate section (see comments in the file).
+
+-  `test.cl`
+This file contains some sample input to be scanned. It does not exercise all of the lexical specification, but it is nevertheless an interesting test. Feel free to modify this file to test your scanner.
+
+- `README`
+This file contains detailed instructions for the assignment as well as a number of useful tips
 
 ## 4 Scanner Results
+In this assignment, you are expected to write Flex rules that match on the appropriate regular expressions defining valid tokens in Cool as described in Section 10 and Figure 1 of the Cool manual and perform the appropriate actions, such as returning a token of the correct type, recording the value of a lexeme where appropriate, or reporting an error when an error is encountered. Before you start on this assignment, make sure to read Section 10 and Figure 1 of the Cool manual; then study the different tokens defined in cool-parse.h. Your implementation needs to define Flex/Jlex rules that match the regular expressions defining each token defined in cool-parse.h and perform the appropriate action for each matched token. For example, if you match on a token **BOOL_CONST**, your lexer has to record whether its value is true or false; similarly if you match on a **TYPEID** token, you need to record the name of the type. Note that not every token requires storing additional information; for example, only returning the token type is sufficient for some tokens like keywords.
+
+Your scanner should be robust—it should work for any conceivable input. For example, you must handle errors such as an **EOF** occurring in the middle of a string or comment, as well as string constants that are too long. These are just some of the errors that can occur; see the manual for the rest.
+
+You must make some provision for graceful termination if a fatal error occurs. Core dumps or uncaught exceptions are unacceptable.
 
 ### 4.1 Error Handling
+All errors should be passed along to the parser. You lexer should not print anything. Errors are communicated to the parser by returning a special error token called **`ERROR`**. (Note, you should ignore the token called **`error`** [in lowercase] for this assignment; it is used by the parser in PA3.) There are several requirements for reporting and recovering from lexical errors:
+
+- When an invalid character (one that can’t begin any token) is encountered, a string containing just that character should be returned as the error string. Resume lexing at the following character.
+
+- If a string contains an unescaped newline, report that error as `‘‘Unterminated string constant’’` and resume lexing at the beginning of the next line—we assume the programmer simply forgot the close-quote.
+
+- When a string is too long, report the error as `‘‘String constant too long’’` in the error string in the **`ERROR`** token. If the string contains invalid characters (i.e., the null character), report this as `‘‘String contains null character’’`. In either case, lexing should resume after the end of the string. The end of the string is defined as either
+    1. the beginning of the next line if an unescaped newline occurs after these errors are encountered;
+    or
+    2. after the closing **”** otherwise.
+
+- If a comment remains open when `EOF` is encountered, report this error with the message `‘‘EOF in comment’’`. Do *not* tokenize the comment’s contents simply because the terminator is missing. Similarly for strings, if an EOF is encountered before the close-quote, report this error as `‘‘EOF in string constant’’`.
 
 ### 4.2 String Table
 
