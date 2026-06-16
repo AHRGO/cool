@@ -16,7 +16,7 @@ Why the alternatives I choose were wrong? Why the correct answer is that (as sho
 So I sought the answer of these questions, being the curious mind I'm. Here's what I've found (spoiler alert).
 
 ## Question 01
-![alt text](./img/02_q1.png)
+![Question 01 Statement](./img/02_q01.png)
 
 ### What I got wrong
 I misread the statement, and tried to calculate all the possible strings the regular expression could produce. In order to do this, I've calculated all the possibilities of the four regular expressions `(0 + 1 + ε)`. Since each regular expression have three possibilites: 0, 1 or empty string (ε) and we have four of them, my logic conclusion was to calculate `3^4`.
@@ -112,4 +112,98 @@ All we need is to sum them up and, **abracadabra!** We have `31`, the result exp
 If I got the logic before, that the outcome is a binary one, I could simply count sum up the bits of each character. Easier, faster and cleaner.
 
 But well, I'm still learning and I found the discovery of this solution exciting.
+
+## Question 02
+![Question 01 Statement](./img/02_q02.png)
+
+Well, this was close! To be fair I thinked that I missed it all, but wow, I actually got at least one! Coming from a poor regex understandment background, this is such a success for me!
+
+But well, there's more to ber understood right here, let's dive in.
+
+### The problem
+This tricky question have more to do with the **analysis order**, plus the **Longest Match** rule, than anything else.
+
+Lets analyze the problem: the token *`abbbaacc`* should be tokenized into `ab`/`bb`/`a`/`acc`.
+
+### Detailed Analysis
+The first two specifications works. But why exactly? I remember writing in these specifications with pencil and paper, but now, 1 month later, I barely remember why I marked these options.
+
+So, I will write down again, in a detailed walkthrough, how these specifications work.
+
+---
+1. 
+```
+    a(b + c*)
+    b+
+```
+---
+#### 1st iteration
+the first rule, `a(b + c*)` read the string until it's two first characters: *`ab`bbaacc*.
+
+This happens because this first rule is expecting an `a`, followed by a `b` **OR** followed by a `c`, which can appear any number of times, including not appearing at all (zero times).
+
+So, the result of this iteration is the token `ab`.
+
+---
+#### 2nd iteration
+The first rule looks for a string starting with `a`, but what we have left is *bbaacc*.
+
+Since the first rule doesn't satisfy this condition, we look into the second rule: `b+`. This rule states something like "a `b` character that appears one or more times".
+
+By this rule, we capture, again, the first two characters of the remaining string: *`bb`aacc*.
+
+So, this is our result: `bb`.
+
+---
+#### 3rd iteration
+This one is tricky. The first rule is `a(b + c*)` and, at a glimpse, it seem to have no matchs in the remaining string *aacc*.
+
+But here's the catch: since `c*` states **zero** or more `c` characters, *`a`acc* is a complete valid token.
+
+Then, this iteration token is simply `a`.
+
+---
+#### 4th iteration
+Having the remaining string as *acc*, the first rule, `a(b + c*)`, serve us well here. I reads the first `a` and then reads the repeated `c` characters until the end of the string.
+
+So, our final token will be `acc`.
+
+### Result
+The remaining tokes for each iteration were, in order: `ab`, `bb`, `a` and `acc`.
+
+Since the tokenization asked is `ab`/`bb`/`a`/`acc`, this specification is right! ✅
+
+---
+2. 
+```
+    ab
+    b+
+    ac*
+```
+Here, we have the following rules:
+- first: `ab`. This will capture any exactly combination of `a` followed by `b`.
+- second: `b+`. Will capture an instace of one or more `b` characters repeated.
+- third: `ac*`. Will capture an occurrance of `a` followed by `c` zero or more times.
+
+---
+#### 1st iteration
+
+3. 
+```
+    c*
+    b+
+    ab
+    ac*
+```
+
+4. 
+```
+    b+
+    ab*
+    ac*
+```
+
+
+
+
 
