@@ -187,7 +187,26 @@ Here, we have the following rules:
 
 ---
 #### 1st iteration
+Reading the string *abbbaacc*, the first rule acts right in the beginning, getting us the token `ab`.
 
+---
+#### 2nd iteration
+In the remaining string, *bbaacc*, the second rule acts: *`bb`aacc*.
+
+---
+#### 3rd iteration
+Here, we have the same tricky situation. The first two rules can't get nothing from *aacc*. This string seems to not satisfy the third rule as well, in a first moment. 
+
+But this is the exact same situation we've seen before and, as `c*` states **zero** or more characters, the third rule returns the token `a`.
+
+---
+#### 4th iteration
+Here, the third rule acts again, tokenizing the remaining characters: `acc`.
+
+### Result
+We had obtained `ab`, `bb`, `a` and `acc`. The same the problem is asking. So yeah, this specification is valid as well! ✅
+
+---
 3. 
 ```
     c*
