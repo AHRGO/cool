@@ -99,7 +99,7 @@ In this scenario, there is `8` possibilities.
 
 In this scenario, we have `16` outcomes.
 
-#### The results
+#### The answer
 Having all this scenarios with different outcomes each, to get the answer to the question, weed need only to sum up the distinct outcomes possibilites.
 1. gives us `1`.
 2. gives us `2`.
@@ -112,13 +112,4 @@ All we need is to sum them up and, **abracadabra!**, we have `31`, the result ex
 If I got the logic before, that the outcome is a binary one, I could simply count sum up the bits of each character. Easier, faster and cleaner.
 
 But well, I'm still learning and I found the discovery of this solution exciting.
-
-
-
-
-
-
-
-
-### What I've should done
 

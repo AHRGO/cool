@@ -5,6 +5,8 @@ Also we've seen some programming in the cool language, the language we will be i
 
 
 # Notes on classes
+There wasn't much to write about, since is an introductory week.
+
 ## Cool
 `Cool` stands for **C**lassroom **O**bject **O**riented **L**anguage
 
