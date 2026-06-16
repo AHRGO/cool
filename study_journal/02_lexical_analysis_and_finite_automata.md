@@ -16,7 +16,7 @@ Why the alternatives I choose were wrong? Why the correct answer is that (as sho
 So I sought the answer of these questions, being the curious mind I'm. Here's what I've found (spoiler alert).
 
 ## Question 01
-![Question 01 statement](./img/02_q01.png)
+![alt text](./img/02_q1.png)
 
 ### What I got wrong
 I misread the statement, and tried to calculate all the possible strings the regular expression could produce. In order to do this, I've calculated all the possibilities of the four regular expressions `(0 + 1 + ε)`. Since each regular expression have three possibilites: 0, 1 or empty string (ε) and we have four of them, my logic conclusion was to calculate `3^4`.
@@ -54,10 +54,10 @@ In this scenario, we have `2` possible outcomes.
 3. We can have two characters.
 As described before, incrementing a character on our binary string decreases the number of empty strings on the end of this string. Therefore, the resulting possibilities of a binary string with two charecters are:
 ```
-    00
-    01
-    10
-    11
+    0 0
+    0 1
+    1 0
+    1 1
 ```
 
 This scenario give us `4` distinct possibilites.
@@ -65,36 +65,36 @@ This scenario give us `4` distinct possibilites.
 4. We can have three characters.
 Maybe you already get it where this is going, but I will proceed anyway, just because I find math fantastic.
 ```
-    000
-    001
-    010
-    011
-    100
-    101
-    110
-    111
+    0 0 0
+    0 0 1
+    0 1 0
+    0 1 1
+    1 0 0
+    1 0 1
+    1 1 0
+    1 1 1
 ```
 
 In this scenario, there is `8` possibilities. 
 
 5. We can have all four characters
 ```
-    0000
-    0001
-    0010
-    0011
-    0100
-    0101
-    0110
-    0111
-    1000
-    1001
-    1010
-    1011
-    1100
-    1101
-    1110
-    1111
+    0 0 0 0
+    0 0 0 1
+    0 0 1 0
+    0 0 1 1
+    0 1 0 0
+    0 1 0 1
+    0 1 1 0
+    0 1 1 1
+    1 0 0 0
+    1 0 0 1
+    1 0 1 0
+    1 0 1 1
+    1 1 0 0
+    1 1 0 1
+    1 1 1 0
+    1 1 1 1
 ```
 
 In this scenario, we have `16` outcomes.
@@ -107,7 +107,7 @@ Having all this scenarios with different outcomes each, to get the answer to the
 4. gives us `8`.
 5. gives us `16`.
 
-All we need is to sum them up and, **abracadabra!**, we have `31`, the result expected.
+All we need is to sum them up and, **abracadabra!** We have `31`, the result expected.
 
 If I got the logic before, that the outcome is a binary one, I could simply count sum up the bits of each character. Easier, faster and cleaner.
 
