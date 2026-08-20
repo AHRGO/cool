@@ -11,7 +11,7 @@ There's isn't much that changed. I'm a curious mind. I don't need to know someth
 # Study Journal Contents
 The course is divided in weeks, so each "chapter" here will cover the course respective week.
 
-1. [Introduction & the Cool Programming Language](./study_journal/01_introduction_and_cool_language.md)
-2. [Lexical Analysis & Finite Automata](./study_journal/02_lexical_analysis_and_finite_automata.md)
+1. [Introduction & the Cool Programming Language](./study_journal/01/01_introduction_and_cool_language.md)
+2. [Lexical Analysis & Finite Automata](./study_journal/02/02_lexical_analysis_and_finite_automata.md)
 
 
