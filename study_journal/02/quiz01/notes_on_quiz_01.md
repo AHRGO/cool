@@ -1,17 +1,4 @@
-# Week 02: Lexical Analysis & Finite Automata
-In the second week of the course, I've learnt what is a Lexical Analyzer, what it does and about automatas, deterministic and non-deterministic ones and how use them to describe the states of a program.
-
-# Notes on classes
-I'm writing this a few weeks after I've watched the classes. I'm planning to rewatch this week lectures and, if I do that, I write the notes here. Else, this will all the notes about that. It is what it is.
-
-There was also the first quiz and the first assignment, which I've taken notes on both.
-
-- [Notes on quiz 01](./quiz01/notes_on_quiz_01.md)
-- [Notes on assignment 01](./assignment01/notes_on_assignment_01.md)
-
-
-
-<!-- # Notes on Quiz #1
+# Notes on Quiz #1
 At the end of each learning week, we have a quiz to challenge us and see what we've truly learned.
 
 In this weekly quiz, I scored 1/12. That's harsh.
@@ -28,6 +15,4 @@ As I've started writing down the answers for those questions, I noticed them gro
 So, I split them in files, one for each question, to improve readability. So, here we go:
 
 1. [How many distinct strings are in the language of the following regular expression](./q01.md)
-2. [Which of the following lexical specifications produces the desired tokenization](./q02.md) -->
-
-
+2. [Which of the following lexical specifications produces the desired tokenization](./q02.md)
